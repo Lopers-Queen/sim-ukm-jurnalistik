@@ -67,13 +67,22 @@
             </div>
         </div>
 
-        {{-- Quick Login Panel (DEV/DEBUG ONLY) --}}
+        {{-- Quick Login Panel (DEV/DEBUG ONLY) — Security: gated by APP_DEBUG + env check --}}
         @if(app()->environment('local', 'development') || config('app.debug'))
-        <div class="card shadow-sm border-0 quick-login-card">
+        <div class="card shadow-sm border-0 quick-login-card" style="max-height: 80vh; overflow-y: auto;">
             <div class="card-header bg-dark text-white py-2 px-3">
-                <div class="fw-semibold small"><i class="bi bi-lightning-charge me-1"></i>Quick Login (Dev)</div>
+                <div class="d-flex justify-content-between align-items-center">
+                    <div class="fw-semibold small"><i class="bi bi-lightning-charge me-1"></i>Quick Login (Dev)</div>
+                    <span class="badge bg-warning text-dark" style="font-size: 0.6rem;">DEBUG MODE</span>
+                </div>
             </div>
             <div class="card-body p-2">
+                {{-- Security Warning --}}
+                <div class="alert alert-warning py-1 px-2 mb-2 small" style="font-size: 0.7rem;">
+                    <i class="bi bi-shield-exclamation me-1"></i>
+                    <strong>Dev only.</strong> Set <code>APP_DEBUG=false</code> di production.
+                </div>
+
                 {{-- Super Admin Quick Access --}}
                 <div class="d-grid mb-2">
                     <button type="button" class="btn btn-sm btn-danger text-start quick-login-auto"
@@ -83,7 +92,7 @@
                 </div>
                 <hr class="my-2">
                 <div class="d-grid gap-1">
-                    {{-- Admin --}}
+                    {{-- Super Admin --}}
                     <div class="fw-semibold small text-muted mt-1 px-1">🔑 Super Admin</div>
                     <button type="button" class="btn btn-sm btn-outline-danger text-start quick-login"
                             data-nim="admin" data-pw="admin123">
@@ -121,7 +130,7 @@
                     <div class="fw-semibold small text-muted mt-2 px-1">📋 Kepala Divisi</div>
                     <button type="button" class="btn btn-sm btn-outline-warning text-start quick-login"
                             data-nim="246521041" data-pw="05072005">
-                        <i class="bi bi-broadcast me-1"></i>Kadiv Pers
+                        <i class="bi bi-broadcast me-1"></i>Kadiv Pers & Penyiaran
                     </button>
                     <button type="button" class="btn btn-sm btn-outline-warning text-start quick-login"
                             data-nim="246651001" data-pw="10012005">
@@ -146,6 +155,44 @@
                             data-nim="236201036" data-pw="03102004">
                         <i class="bi bi-pencil me-1"></i>Kanit Redaksi
                     </button>
+
+                    {{-- Anggota per Divisi --}}
+                    <div class="fw-semibold small text-muted mt-2 px-1">👤 Anggota per Divisi</div>
+                    <button type="button" class="btn btn-sm btn-outline-light text-start quick-login"
+                            data-nim="226512006" data-pw="01012004">
+                        <i class="bi bi-broadcast me-1"></i>Anggota — Pers & Penyiaran
+                    </button>
+                    <button type="button" class="btn btn-sm btn-outline-light text-start quick-login"
+                            data-nim="226411006" data-pw="01012004">
+                        <i class="bi bi-camera me-1"></i>Anggota — Fotografi
+                    </button>
+                    <button type="button" class="btn btn-sm btn-outline-light text-start quick-login"
+                            data-nim="226412005" data-pw="01012004">
+                        <i class="bi bi-camera-video me-1"></i>Anggota — Videografi
+                    </button>
+
+                    {{-- Anggota per Unit --}}
+                    <div class="fw-semibold small text-muted mt-2 px-1">👤 Anggota per Unit</div>
+                    <button type="button" class="btn btn-sm btn-outline-light text-start quick-login"
+                            data-nim="226221021" data-pw="01012004">
+                        <i class="bi bi-megaphone me-1"></i>Anggota — Kominfo
+                    </button>
+                    <button type="button" class="btn btn-sm btn-outline-light text-start quick-login"
+                            data-nim="226661049" data-pw="01012004">
+                        <i class="bi bi-pencil me-1"></i>Anggota — Redaksi
+                    </button>
+                    <button type="button" class="btn btn-sm btn-outline-light text-start quick-login"
+                            data-nim="236652013" data-pw="01012004">
+                        <i class="bi bi-box me-1"></i>Anggota — Inventory
+                    </button>
+                </div>
+
+                {{-- Password hint --}}
+                <div class="mt-2 px-1">
+                    <div class="text-muted" style="font-size: 0.65rem;">
+                        <i class="bi bi-info-circle me-1"></i>
+                        Anggota password: <code>01012004</code> (default seeder)
+                    </div>
                 </div>
             </div>
         </div>
@@ -163,12 +210,12 @@
             });
         });
 
-        // Quick auto-login — langsung submit form
+        // Quick auto-login — langsung submit login form
         document.querySelectorAll('.quick-login-auto').forEach(btn => {
             btn.addEventListener('click', () => {
                 document.getElementById('nim').value = btn.dataset.nim;
                 document.getElementById('password').value = btn.dataset.pw;
-                btn.closest('form') || document.querySelector('form').submit();
+                document.querySelector('form').submit();
             });
         });
     </script>

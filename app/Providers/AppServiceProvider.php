@@ -33,9 +33,18 @@ class AppServiceProvider extends ServiceProvider
         // Super Admin bypass — role super_admin melewati SEMUA permission checks
         // Jika sedang impersonate, bypass dinonaktifkan agar terlihat seperti role tersebut
         Gate::before(function ($user, $ability) {
-            if (session()->has('impersonating_role')) {
-                return null; // Izinkan pengecekan permission normal (seolah-olah bukan super_admin)
+            // Check if impersonation session has expired (2-hour timeout)
+            if (session()->has('impersonating_role') && session()->has('impersonation_started_at')) {
+                $startedAt = session('impersonation_started_at');
+                $maxMinutes = 120; // 2 hours
+                if ($startedAt && (now()->timestamp - $startedAt) > ($maxMinutes * 60)) {
+                    session()->forget(['impersonating_role', 'impersonation_started_at']);
+                    // Don't return null here — let it fall through to normal super_admin check
+                } else {
+                    return null; // Impersonation active: normal permission check (no bypass)
+                }
             }
+
             return $user->hasRole('super_admin') ? true : null;
         });
     }

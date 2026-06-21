@@ -89,20 +89,45 @@
                 @endforeach
             </div>
 
-            {{-- Stop Impersonate --}}
+            {{-- Active Impersonation Info --}}
             @if(session('impersonating_role'))
                 <div class="card border-warning bg-warning bg-opacity-10 mt-4">
-                    <div class="card-body p-3 d-flex justify-content-between align-items-center">
+                    <div class="card-body p-3 d-flex justify-content-between align-items-center flex-wrap gap-2">
                         <div>
                             <i class="bi bi-exclamation-triangle-fill text-warning me-2"></i>
                             <strong>Anda sedang impersonate:</strong> {{ ucwords(str_replace('_', ' ', session('impersonating_role'))) }}
+                            @if(session('impersonation_started_at'))
+                                <span class="text-muted small ms-2">
+                                    (dimulai {{ \Carbon\Carbon::createFromTimestamp(session('impersonation_started_at'))->diffForHumans() }})
+                                </span>
+                            @endif
                         </div>
                         <a href="{{ route('admin.stop-impersonate') }}" class="btn btn-warning btn-sm">
                             <i class="bi bi-x-circle me-1"></i>Kembali ke Super Admin
                         </a>
                     </div>
                 </div>
+
+                <div class="alert alert-info small mt-2">
+                    <i class="bi bi-clock me-1"></i>
+                    Impersonation akan otomatis berakhir setelah <strong>2 jam</strong>.
+                    Semua permission check berjalan normal seolah-olah Anda adalah role tersebut.
+                </div>
             @endif
+
+            {{-- Security Notice --}}
+            <div class="card border-0 bg-light mt-3">
+                <div class="card-body p-3">
+                    <h6 class="fw-semibold small mb-2"><i class="bi bi-shield-check me-1"></i>Cara Kerja</h6>
+                    <ul class="small text-muted mb-0">
+                        <li>Impersonate <strong>tidak mengubah database</strong> — hanya session browser</li>
+                        <li>Saat impersonate, Super Admin bypass <strong>dinonaktifkan</strong></li>
+                        <li>Anda melihat sistem persis seperti role yang di-impersonate</li>
+                        <li>Semua aksi tercatat di <strong>Activity Log</strong> dan <strong>server log</strong></li>
+                        <li>Fitur ini <strong>hanya aktif</strong> saat <code>APP_DEBUG=true</code></li>
+                    </ul>
+                </div>
+            </div>
         </div>
     </div>
 </div>

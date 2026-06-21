@@ -30,6 +30,13 @@ class ForceFirstPasswordChange
             /** @var \App\Models\Anggota $user */
             $user = Auth::user();
 
+            // Skip first-password check when:
+            // 1. Super Admin sedang impersonate (testing mode)
+            // 2. APP_DEBUG=true dan user adalah super_admin (dev testing)
+            if (session()->has('impersonating_role')) {
+                return $next($request);
+            }
+
             // Skip jika user sudah memilih "lewati" pada sesi ini
             if ($user->is_first_login
                 && ! in_array($request->route()?->getName(), $this->except)

@@ -43,8 +43,8 @@
 
                 {{-- Right side --}}
                 <div class="ms-auto d-flex align-items-center gap-3">
-                    {{-- Super Admin Indicator --}}
-                    @if(Auth::user()->hasRole('super_admin'))
+                    {{-- Super Admin Indicator (hidden when impersonating) --}}
+                    @if(Auth::user()->hasRole('super_admin') && !session('impersonating_role'))
                         <span class="badge bg-danger bg-opacity-10 text-danger border border-danger" style="font-size: 0.7rem;">
                             <i class="bi bi-shield-lock-fill me-1"></i>Super Admin
                         </span>
@@ -52,10 +52,11 @@
 
                     {{-- Impersonating Banner --}}
                     @if(session('impersonating_role'))
-                        <span class="badge bg-warning text-dark" style="font-size: 0.7rem;">
-                            <i class="bi bi-eye me-1"></i>Impersonating: {{ session('impersonating_role') }}
-                            <a href="{{ route('admin.stop-impersonate') }}" class="ms-1 text-decoration-none"><i class="bi bi-x-circle-fill"></i></a>
-                        </span>
+                        <a href="{{ route('admin.stop-impersonate') }}" class="badge bg-warning text-dark text-decoration-none"
+                           style="font-size: 0.7rem;" title="Klik untuk kembali ke Super Admin">
+                            <i class="bi bi-eye-fill me-1"></i>Impersonating: {{ ucwords(str_replace('_', ' ', session('impersonating_role'))) }}
+                            <i class="bi bi-x-circle-fill ms-1"></i>
+                        </a>
                     @endif
                     {{-- Theme Toggle --}}
                     <button class="theme-toggle" id="themeToggle" title="Toggle dark/light mode">
