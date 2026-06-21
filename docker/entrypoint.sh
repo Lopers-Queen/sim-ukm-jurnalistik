@@ -45,7 +45,7 @@ fi
 # ── 8. Seed database if flag is set ──────────────────────
 if [ "$SEED_DATABASE" = "true" ]; then
     echo "🌱 Seeding database..."
-    php artisan db:seed --force --no-interaction
+    php artisan db:seed --force --no-interaction || echo "⚠️  Seeding skipped (data may already exist)"
 fi
 
 echo "✅ Setup complete! Starting services..."
