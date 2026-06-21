@@ -58,6 +58,12 @@ WORKDIR /var/www/html
 # Copy application files
 COPY . .
 
+# Create required directories BEFORE composer commands
+RUN mkdir -p storage/app/public storage/framework/{cache,sessions,views} \
+    storage/logs bootstrap/cache \
+    && chown -R www-data:www-data storage bootstrap/cache \
+    && chmod -R 775 storage bootstrap/cache
+
 # Copy vendor from builder
 COPY --from=vendor-builder /app/vendor/ vendor/
 
@@ -68,13 +74,7 @@ COPY --from=frontend-builder /app/public/build/ public/build/
 COPY --from=composer:2 /usr/bin/composer /usr/bin/composer
 
 # Run composer dump-autoload for production
-RUN composer dump-autoload --optimize --no-dev --ignore-platform-reqs
-
-# Storage & permissions
-RUN mkdir -p storage/app/public storage/framework/{cache,sessions,views} \
-    storage/logs bootstrap/cache \
-    && chown -R www-data:www-data storage bootstrap/cache \
-    && chmod -R 775 storage bootstrap/cache
+RUN COMPOSER_ALLOW_SUPERUSER=1 composer dump-autoload --optimize --no-dev --ignore-platform-reqs
 
 # Create storage link
 RUN php artisan storage:link || true
