@@ -26,7 +26,7 @@ RUN composer install --no-dev --optimize-autoloader --no-scripts --no-interactio
 
 
 # ── Stage 3: Production image ─────────────────────────────
-FROM php:8.2-fpm-alpine AS production
+FROM php:8.4-fpm-alpine AS production
 
 # Install system dependencies
 RUN apk add --no-cache \
@@ -68,7 +68,7 @@ COPY --from=frontend-builder /app/public/build/ public/build/
 COPY --from=composer:2 /usr/bin/composer /usr/bin/composer
 
 # Run composer dump-autoload for production
-RUN composer dump-autoload --optimize --no-dev
+RUN composer dump-autoload --optimize --no-dev --ignore-platform-reqs
 
 # Storage & permissions
 RUN mkdir -p storage/app/public storage/framework/{cache,sessions,views} \
