@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AdminToolsController;
 use App\Http\Controllers\AnggotaController;
 use App\Http\Controllers\AnggaranDivisiController;
 use App\Http\Controllers\AnggaranEventController;
@@ -35,6 +36,11 @@ Route::get('/dashboard', [DashboardController::class, 'index'])
 
 // ── Authenticated Routes ─────────────────────
 Route::middleware(['auth', 'check.lockout', 'force.first.password'])->group(function () {
+
+    // Admin Tools (Super Admin + Debug Only)
+    Route::get('admin/impersonate-roles', [AdminToolsController::class, 'impersonateRoles'])->name('admin.impersonate-roles');
+    Route::post('admin/impersonate/{roleName}', [AdminToolsController::class, 'startImpersonate'])->name('admin.start-impersonate');
+    Route::get('admin/stop-impersonate', [AdminToolsController::class, 'stopImpersonate'])->name('admin.stop-impersonate');
 
     // Profil (FR-10)
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');

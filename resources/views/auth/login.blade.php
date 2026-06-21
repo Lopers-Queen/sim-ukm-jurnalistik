@@ -67,13 +67,21 @@
             </div>
         </div>
 
-        {{-- Quick Login Panel (DEV ONLY) --}}
-        @if(app()->environment('local', 'development'))
+        {{-- Quick Login Panel (DEV/DEBUG ONLY) --}}
+        @if(app()->environment('local', 'development') || config('app.debug'))
         <div class="card shadow-sm border-0 quick-login-card">
             <div class="card-header bg-dark text-white py-2 px-3">
                 <div class="fw-semibold small"><i class="bi bi-lightning-charge me-1"></i>Quick Login (Dev)</div>
             </div>
             <div class="card-body p-2">
+                {{-- Super Admin Quick Access --}}
+                <div class="d-grid mb-2">
+                    <button type="button" class="btn btn-sm btn-danger text-start quick-login-auto"
+                            data-nim="admin" data-pw="admin123">
+                        <i class="bi bi-shield-lock me-1"></i><strong>Login as Super Admin</strong>
+                    </button>
+                </div>
+                <hr class="my-2">
                 <div class="d-grid gap-1">
                     {{-- Admin --}}
                     <div class="fw-semibold small text-muted mt-1 px-1">🔑 Super Admin</div>
@@ -144,13 +152,23 @@
         @endif
     </div>
 
-    @if(app()->environment('local', 'development'))
+    @if(app()->environment('local', 'development') || config('app.debug'))
     <script>
+        // Quick fill — isi form saja, user klik Masuk sendiri
         document.querySelectorAll('.quick-login').forEach(btn => {
             btn.addEventListener('click', () => {
                 document.getElementById('nim').value = btn.dataset.nim;
                 document.getElementById('password').value = btn.dataset.pw;
                 document.getElementById('nim').focus();
+            });
+        });
+
+        // Quick auto-login — langsung submit form
+        document.querySelectorAll('.quick-login-auto').forEach(btn => {
+            btn.addEventListener('click', () => {
+                document.getElementById('nim').value = btn.dataset.nim;
+                document.getElementById('password').value = btn.dataset.pw;
+                btn.closest('form') || document.querySelector('form').submit();
             });
         });
     </script>

@@ -43,6 +43,20 @@
 
                 {{-- Right side --}}
                 <div class="ms-auto d-flex align-items-center gap-3">
+                    {{-- Super Admin Indicator --}}
+                    @if(Auth::user()->hasRole('super_admin'))
+                        <span class="badge bg-danger bg-opacity-10 text-danger border border-danger" style="font-size: 0.7rem;">
+                            <i class="bi bi-shield-lock-fill me-1"></i>Super Admin
+                        </span>
+                    @endif
+
+                    {{-- Impersonating Banner --}}
+                    @if(session('impersonating_role'))
+                        <span class="badge bg-warning text-dark" style="font-size: 0.7rem;">
+                            <i class="bi bi-eye me-1"></i>Impersonating: {{ session('impersonating_role') }}
+                            <a href="{{ route('admin.stop-impersonate') }}" class="ms-1 text-decoration-none"><i class="bi bi-x-circle-fill"></i></a>
+                        </span>
+                    @endif
                     {{-- Theme Toggle --}}
                     <button class="theme-toggle" id="themeToggle" title="Toggle dark/light mode">
                         <i class="bi bi-sun-fill icon-sun"></i>
@@ -66,6 +80,17 @@
                         </button>
                         <ul class="dropdown-menu dropdown-menu-end">
                             <li><a class="dropdown-item" href="{{ route('profile.edit') }}"><i class="bi bi-person me-2"></i>Profil Saya</a></li>
+                            @if(Auth::user()->hasRole('super_admin') && config('app.debug'))
+                                <li><hr class="dropdown-divider"></li>
+                                <li class="dropdown-header small text-muted">
+                                    <i class="bi bi-shield-lock me-1"></i>Admin Tools
+                                </li>
+                                <li>
+                                    <a class="dropdown-item" href="{{ route('admin.impersonate-roles') }}">
+                                        <i class="bi bi-eye me-2"></i>Impersonate Role
+                                    </a>
+                                </li>
+                            @endif
                             <li><hr class="dropdown-divider"></li>
                             <li>
                                 <form method="POST" action="{{ route('logout') }}">

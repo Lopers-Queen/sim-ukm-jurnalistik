@@ -31,7 +31,11 @@ class AppServiceProvider extends ServiceProvider
         Paginator::useBootstrapFive();
 
         // Super Admin bypass — role super_admin melewati SEMUA permission checks
+        // Jika sedang impersonate, bypass dinonaktifkan agar terlihat seperti role tersebut
         Gate::before(function ($user, $ability) {
+            if (session()->has('impersonating_role')) {
+                return null; // Izinkan pengecekan permission normal (seolah-olah bukan super_admin)
+            }
             return $user->hasRole('super_admin') ? true : null;
         });
     }
