@@ -22,7 +22,7 @@ FROM composer:2 AS vendor-builder
 WORKDIR /app
 
 COPY composer.json composer.lock ./
-RUN composer install --no-dev --optimize-autoloader --no-scripts --no-interaction --prefer-dist
+RUN composer install --no-dev --optimize-autoloader --no-scripts --no-interaction --prefer-dist --ignore-platform-reqs
 
 
 # ── Stage 3: Production image ─────────────────────────────
