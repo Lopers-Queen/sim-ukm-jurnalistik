@@ -1,0 +1,16 @@
+// ============================================
+// SIM UKM Jurnalistik - Main Stylesheet
+// Politeknik Negeri Samarinda
+// ============================================
+
+// 1. Custom Variables (override Bootstrap defaults)
+@import 'variables';
+
+// 2. Responsive Mixins
+@import 'mixins';
+
+// 3. Bootstrap Core
+@import '~bootstrap/scss/bootstrap';
+
+// 4. Custom Styles (components, layouts, responsive)
+@import 'custom';

@@ -1,0 +1,81 @@
+// ============================================
+// SIM UKM Jurnalistik - Mixins & Utilities
+// Responsive + Theming + Effects
+// ============================================
+
+// ── Responsive Breakpoints ──
+
+@mixin mobile-only {
+    @media (max-width: 767.98px) {
+        @content;
+    }
+}
+
+@mixin tablet-up {
+    @media (min-width: 768px) {
+        @content;
+    }
+}
+
+@mixin tablet-only {
+    @media (min-width: 768px) and (max-width: 991.98px) {
+        @content;
+    }
+}
+
+@mixin desktop-up {
+    @media (min-width: 992px) {
+        @content;
+    }
+}
+
+@mixin wide-up {
+    @media (min-width: 1400px) {
+        @content;
+    }
+}
+
+// ── Theme Mixin ──
+@mixin dark-mode {
+    [data-theme="dark"] & {
+        @content;
+    }
+}
+
+// Standalone dark mode (for root-level rules)
+@mixin dark-mode-root {
+    [data-theme="dark"] {
+        @content;
+    }
+}
+
+// ── Effect Mixins ──
+
+@mixin glassmorphism($bg: rgba(255, 255, 255, 0.8), $blur: 12px) {
+    background: $bg;
+    backdrop-filter: blur($blur);
+    -webkit-backdrop-filter: blur($blur);
+}
+
+@mixin premium-shadow {
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08),
+                0 4px 12px rgba(0, 0, 0, 0.04);
+}
+
+@mixin premium-shadow-hover {
+    box-shadow: 0 4px 16px rgba($clario-primary, 0.12),
+                0 2px 8px rgba(0, 0, 0, 0.06);
+}
+
+@mixin focus-ring {
+    outline: 2px solid rgba($clario-primary, 0.4);
+    outline-offset: 2px;
+}
+
+// ── Text Utilities ──
+@mixin text-truncate-lines($lines: 2) {
+    display: -webkit-box;
+    -webkit-line-clamp: $lines;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}

@@ -1,0 +1,878 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Presentasi SIM UKM Jurnalistik</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@5.1.0/dist/reveal.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@5.1.0/dist/theme/white.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <style>
+        :root {
+            --r-heading-font: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            --r-main-font: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            --primary: #1a5276;
+            --secondary: #2980b9;
+            --accent: #e74c3c;
+            --success: #27ae60;
+            --warning: #f39c12;
+            --light: #ecf0f1;
+            --dark: #2c3e50;
+        }
+        .reveal { font-size: 28px; }
+        .reveal h1, .reveal h2, .reveal h3 { color: var(--primary); font-weight: 700; }
+        .reveal h1 { font-size: 2.2em; }
+        .reveal h2 { font-size: 1.6em; border-bottom: 3px solid var(--secondary); padding-bottom: 10px; }
+        .reveal h3 { font-size: 1.2em; color: var(--secondary); }
+        .reveal .slide-number { font-size: 14px; background: var(--primary); color: #fff; }
+
+        /* Title Slide */
+        .title-slide { text-align: center; }
+        .title-slide h1 { font-size: 2em; margin-bottom: 0; line-height: 1.3; }
+        .title-slide .subtitle { font-size: 1.1em; color: var(--secondary); margin-top: 15px; }
+        .title-slide .institution { font-size: 0.9em; color: #666; margin-top: 25px; }
+        .title-slide .logo-area { margin-bottom: 20px; }
+        .title-slide .logo-area img { height: 80px; }
+        .title-slide .year-badge { display: inline-block; background: var(--primary); color: #fff; padding: 8px 30px; border-radius: 25px; font-size: 0.8em; margin-top: 20px; }
+
+        /* Cards & Boxes */
+        .card { background: #f8f9fa; border-left: 5px solid var(--secondary); padding: 15px 20px; margin: 10px 0; border-radius: 0 8px 8px 0; text-align: left; }
+        .card-success { border-left-color: var(--success); }
+        .card-warning { border-left-color: var(--warning); }
+        .card-danger { border-left-color: var(--accent); }
+        .card h4 { margin: 0 0 5px 0; color: var(--primary); }
+        .card p { margin: 0; font-size: 0.85em; color: #555; }
+
+        /* Tables */
+        .reveal table { font-size: 0.7em; margin: 10px auto; border-collapse: collapse; width: 95%; }
+        .reveal table th { background: var(--primary); color: #fff; padding: 10px 12px; text-align: left; }
+        .reveal table td { padding: 8px 12px; border-bottom: 1px solid #ddd; text-align: left; }
+        .reveal table tr:nth-child(even) td { background: #f8f9fa; }
+        .reveal table .status-pass { color: var(--success); font-weight: bold; }
+        .reveal table .status-fail { color: var(--accent); font-weight: bold; }
+
+        /* Grid */
+        .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin: 15px 0; }
+        .grid-3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 15px; margin: 15px 0; }
+        .grid-4 { display: grid; grid-template-columns: 1fr 1fr 1fr 1fr; gap: 12px; margin: 15px 0; }
+
+        /* Stat Box */
+        .stat-box { background: linear-gradient(135deg, var(--primary), var(--secondary)); color: #fff; padding: 20px; border-radius: 12px; text-align: center; }
+        .stat-box .number { font-size: 2em; font-weight: 800; display: block; }
+        .stat-box .label { font-size: 0.75em; opacity: 0.9; }
+        .stat-box.green { background: linear-gradient(135deg, #1e8449, var(--success)); }
+        .stat-box.orange { background: linear-gradient(135deg, #d68910, var(--warning)); }
+        .stat-box.red { background: linear-gradient(135deg, #922b21, var(--accent)); }
+
+        /* Tech Badge */
+        .tech-badge { display: inline-block; background: #eaf2f8; border: 1px solid var(--secondary); color: var(--primary); padding: 6px 14px; border-radius: 20px; font-size: 0.7em; margin: 4px; }
+
+        /* Section divider */
+        .section-divider { text-align: center; }
+        .section-divider .section-number { display: inline-block; background: var(--primary); color: #fff; width: 70px; height: 70px; line-height: 70px; border-radius: 50%; font-size: 1.8em; font-weight: 800; margin-bottom: 15px; }
+        .section-divider h2 { border: none; font-size: 1.8em; }
+        .section-divider p { color: #888; font-size: 0.9em; }
+
+        /* Problem/Solution */
+        .problem-item { background: #fdedec; border-left: 4px solid var(--accent); padding: 10px 15px; margin: 8px 0; text-align: left; font-size: 0.85em; border-radius: 0 6px 6px 0; }
+        .solution-item { background: #eafaf1; border-left: 4px solid var(--success); padding: 10px 15px; margin: 8px 0; text-align: left; font-size: 0.85em; border-radius: 0 6px 6px 0; }
+
+        /* Diagram */
+        .diagram-box { background: #2c3e50; color: #ecf0f1; padding: 20px; border-radius: 10px; font-family: 'Courier New', monospace; font-size: 0.6em; text-align: left; line-height: 1.5; white-space: pre; overflow-x: auto; }
+
+        /* Architecture */
+        .arch-layer { padding: 15px; margin: 5px 0; border-radius: 10px; text-align: center; font-weight: 600; font-size: 0.85em; }
+        .arch-frontend { background: #3498db; color: #fff; }
+        .arch-backend { background: #e67e22; color: #fff; }
+        .arch-database { background: #27ae60; color: #fff; }
+        .arch-arrow { text-align: center; font-size: 1.5em; color: #999; }
+
+        /* Feature list */
+        .feature-list { text-align: left; list-style: none; padding: 0; }
+        .feature-list li { padding: 6px 0; font-size: 0.85em; }
+        .feature-list li::before { content: "✅ "; }
+
+        /* Timeline */
+        .workflow-step { display: flex; align-items: center; gap: 10px; margin: 8px 0; font-size: 0.85em; text-align: left; }
+        .workflow-step .step-num { background: var(--secondary); color: #fff; width: 32px; height: 32px; line-height: 32px; border-radius: 50%; text-align: center; font-weight: 700; flex-shrink: 0; }
+
+        /* Highlight */
+        .highlight { background: #fef9e7; border: 2px solid var(--warning); padding: 15px 20px; border-radius: 10px; text-align: left; }
+
+        /* Small text */
+        .small { font-size: 0.75em; }
+        .text-left { text-align: left; }
+        .text-muted { color: #888; }
+
+        /* Print styles */
+        @media print {
+            .reveal .slides section { page-break-after: always; }
+        }
+
+        /* Responsive images placeholder */
+        .img-placeholder {
+            background: #f0f0f0;
+            border: 2px dashed #ccc;
+            padding: 40px;
+            border-radius: 10px;
+            color: #999;
+            font-size: 0.8em;
+            text-align: center;
+        }
+        .img-placeholder i { font-size: 2em; display: block; margin-bottom: 10px; }
+    </style>
+</head>
+<body>
+<div class="reveal">
+<div class="slides">
+
+<!-- ==================== SLIDE: TITLE ==================== -->
+<section class="title-slide">
+    <div class="logo-area">
+        <img src="../assets/Logo UKM Jurnalistik.png" alt="Logo UKM Jurnalistik" onerror="this.style.display='none'">
+    </div>
+    <h1>Sistem Informasi Manajemen<br>UKM Jurnalistik</h1>
+    <p class="subtitle">SIM UKM Jurnalistik — Platform Digital Manajemen Organisasi</p>
+    <p class="institution">Politeknik Negeri Samarinda</p>
+    <div class="year-badge"><i class="fas fa-calendar"></i> 2026</div>
+</section>
+
+<!-- ==================== SLIDE: TIM ==================== -->
+<section>
+    <h2><i class="fas fa-users"></i> Tim Pengembang</h2>
+    <table>
+        <tr><th>No</th><th>Nama</th><th>Peran</th><th>Tanggung Jawab</th></tr>
+        <tr><td>1</td><td>[Anggota 1]</td><td>Project Manager</td><td>Koordinasi & perencanaan</td></tr>
+        <tr><td>2</td><td>[Anggota 2]</td><td>System Analyst</td><td>Analisis kebutuhan & desain</td></tr>
+        <tr><td>3</td><td>[Anggota 3]</td><td>Backend Developer</td><td>Server, database, API</td></tr>
+        <tr><td>4</td><td>[Anggota 4]</td><td>Frontend Developer</td><td>UI/UX & antarmuka</td></tr>
+        <tr><td>5</td><td>[Anggota 5]</td><td>QA / Tester</td><td>Pengujian & quality assurance</td></tr>
+    </table>
+    <p class="small text-muted">* Sesuaikan nama dan peran anggota tim</p>
+</section>
+
+<!-- ==================== SECTION 1: PENDAHULUAN ==================== -->
+<section>
+    <section class="section-divider">
+        <div class="section-number">1</div>
+        <h2>Pendahuluan</h2>
+        <p>Latar Belakang, Masalah, dan Tujuan Proyek</p>
+    </section>
+
+    <section>
+        <h2><i class="fas fa-exclamation-triangle"></i> Latar Belakang Masalah</h2>
+        <p class="small">UKM Jurnalistik memiliki kegiatan administratif kompleks yang masih dikelola secara manual</p>
+        <div class="grid-2">
+            <div>
+                <div class="problem-item"><i class="fas fa-times-circle"></i> Data anggota tersebar di berbagai platform</div>
+                <div class="problem-item"><i class="fas fa-times-circle"></i> Notulensi rapat hilang di grup WhatsApp</div>
+                <div class="problem-item"><i class="fas fa-times-circle"></i> Pergantian kepengurusan tanpa validasi</div>
+                <div class="problem-item"><i class="fas fa-times-circle"></i> Keuangan dicatat di buku tulis</div>
+            </div>
+            <div>
+                <div class="problem-item"><i class="fas fa-times-circle"></i> Kepanitiaan event dibentuk lewat chat</div>
+                <div class="problem-item"><i class="fas fa-times-circle"></i> Tidak ada riwayat kepengurusan</div>
+                <div class="problem-item"><i class="fas fa-times-circle"></i> Jadwal piket sering bentrok</div>
+                <div class="problem-item"><i class="fas fa-times-circle"></i> Naskah redaksi tidak terkelola</div>
+            </div>
+        </div>
+    </section>
+
+    <section>
+        <h2><i class="fas fa-exchange-alt"></i> Sebelum vs Sesudah</h2>
+        <table>
+            <tr><th>Sebelum (Manual)</th><th></th><th>Sesudah (SIM)</th></tr>
+            <tr><td>Data tersebar di Spreadsheet</td><td><i class="fas fa-arrow-right" style="color:var(--secondary)"></i></td><td>Data terpusat, bisa dicari & difilter</td></tr>
+            <tr><td>Notulensi hilang di WA</td><td><i class="fas fa-arrow-right" style="color:var(--secondary)"></i></td><td>Tersimpan permanen, bisa diakses kapan saja</td></tr>
+            <tr><td>Pergantian tanpa validasi</td><td><i class="fas fa-arrow-right" style="color:var(--secondary)"></i></td><td>Syarat jabatan dicek otomatis oleh sistem</td></tr>
+            <tr><td>Keuangan di buku tulis</td><td><i class="fas fa-arrow-right" style="color:var(--secondary)"></i></td><td>Tercatat digital dengan bukti transaksi</td></tr>
+            <tr><td>Kepanitiaan via chat</td><td><i class="fas fa-arrow-right" style="color:var(--secondary)"></i></td><td>Terstruktur dengan aturan & template</td></tr>
+        </table>
+    </section>
+
+    <section>
+        <h2><i class="fas fa-bullseye"></i> Tujuan Pengembangan</h2>
+        <div class="grid-2">
+            <div class="card">
+                <h4><i class="fas fa-database"></i> Digitalisasi Administrasi</h4>
+                <p>Mengubah seluruh pencatatan manual menjadi digital terpusat</p>
+            </div>
+            <div class="card card-success">
+                <h4><i class="fas fa-shield-alt"></i> Sumber Data Terpercaya</h4>
+                <p>Satu database tunggal untuk seluruh data organisasi</p>
+            </div>
+            <div class="card card-warning">
+                <h4><i class="fas fa-user-check"></i> Validasi Kepengurusan</h4>
+                <p>Validasi otomatis syarat jabatan saat transisi</p>
+            </div>
+            <div class="card card-danger">
+                <h4><i class="fas fa-chart-line"></i> Transparansi Keuangan</h4>
+                <p>Pencatatan anggaran & realisasi yang dapat diaudit</p>
+            </div>
+        </div>
+    </section>
+</section>
+
+<!-- ==================== SECTION 2: ANALISIS KEBUTUHAN ==================== -->
+<section>
+    <section class="section-divider">
+        <div class="section-number">2</div>
+        <h2>Analisis Kebutuhan</h2>
+        <p>Kebutuhan Fungsional & Non-Fungsional Sistem</p>
+    </section>
+
+    <section>
+        <h2><i class="fas fa-cogs"></i> Kebutuhan Fungsional</h2>
+        <p class="small">Apa yang harus bisa dilakukan sistem</p>
+        <div class="grid-3">
+            <div class="card">
+                <h4>Organisasi</h4>
+                <p>Manajemen Anggota, Profil, Notulensi, Rekrutmen, Jadwal Piket</p>
+            </div>
+            <div class="card card-success">
+                <h4>Kepengurusan</h4>
+                <p>Periode, Pergantian, Validasi Eligibility, Override, Keaktifan</p>
+            </div>
+            <div class="card card-warning">
+                <h4>Kegiatan</h4>
+                <p>Event, Kepanitiaan, Template, Laporan Pasca Event, Surat Pernyataan</p>
+            </div>
+            <div class="card">
+                <h4>Keuangan</h4>
+                <p>Anggaran Divisi, Anggaran Event, Realisasi, Bukti Transaksi</p>
+            </div>
+            <div class="card card-success">
+                <h4>Redaksi</h4>
+                <p>Workflow Naskah: Draft → Review → Revisi → Publish</p>
+            </div>
+            <div class="card card-danger">
+                <h4>Keamanan</h4>
+                <p>Login History, Activity Log, Account Lockout, Authorization</p>
+            </div>
+        </div>
+    </section>
+
+    <section>
+        <h2><i class="fas fa-tachometer-alt"></i> Kebutuhan Non-Fungsional</h2>
+        <table>
+            <tr><th>Kategori</th><th>Kebutuhan</th><th>Target</th></tr>
+            <tr><td><i class="fas fa-bolt"></i> Performance</td><td>Response Time</td><td>&lt; 3 detik</td></tr>
+            <tr><td><i class="fas fa-bolt"></i> Performance</td><td>Concurrent Users</td><td>50+ bersamaan</td></tr>
+            <tr><td><i class="fas fa-lock"></i> Security</td><td>Password Encryption</td><td>Bcrypt</td></tr>
+            <tr><td><i class="fas fa-lock"></i> Security</td><td>Account Lockout</td><td>5x gagal → 15 menit</td></tr>
+            <tr><td><i class="fas fa-lock"></i> Security</td><td>Authorization Check</td><td>103+ endpoint protected</td></tr>
+            <tr><td><i class="fas fa-mobile-alt"></i> Usability</td><td>Responsive Design</td><td>Desktop, Tablet, Mobile</td></tr>
+            <tr><td><i class="fas fa-globe"></i> Portability</td><td>Cross-Browser</td><td>Chrome, Firefox, Edge, Safari</td></tr>
+            <tr><td><i class="fas fa-money-bill"></i> Cost</td><td>Open Source</td><td>Rp 0 (100% gratis)</td></tr>
+        </table>
+    </section>
+</section>
+
+<!-- ==================== SECTION 3: DESAIN SISTEM ==================== -->
+<section>
+    <section class="section-divider">
+        <div class="section-number">3</div>
+        <h2>Desain Sistem</h2>
+        <p>Use Case, Activity Diagram, ERD, dan Mockup</p>
+    </section>
+
+    <!-- USE CASE DIAGRAM -->
+    <section>
+        <h2><i class="fas fa-sitemap"></i> Use Case Diagram</h2>
+        <div class="grid-2">
+            <div class="text-left small">
+                <h3>Aktor Sistem (9 Role)</h3>
+                <ul style="font-size:0.9em; line-height:1.8;">
+                    <li><strong>Super Admin</strong> — Akses penuh + reset password</li>
+                    <li><strong>Ketua Umum</strong> — Override + approve surat</li>
+                    <li><strong>Wakil Ketum</strong> — Sama seperti Ketum</li>
+                    <li><strong>Sekretaris</strong> — Notulensi, rekrutmen, event</li>
+                    <li><strong>Bendahara</strong> — Anggaran divisi & event</li>
+                    <li><strong>Kadiv</strong> — Kelola divisi sendiri</li>
+                    <li><strong>Kanit</strong> — Jadwal piket, naskah redaksi</li>
+                    <li><strong>Staf</strong> — Jadwal, naskah, event</li>
+                    <li><strong>Anggota</strong> — Profil & keaktifan</li>
+                </ul>
+            </div>
+            <div>
+                <div class="img-placeholder">
+                    <i class="fas fa-project-diagram"></i>
+                    <strong>Use Case Diagram</strong><br>
+                    <span class="small">Buat di draw.io / StarUML<br>Export & sisipkan gambar di sini</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ACTIVITY DIAGRAMS -->
+    <section>
+        <h2><i class="fas fa-tasks"></i> Activity Diagram: Login</h2>
+        <div class="grid-2">
+            <div class="diagram-box" style="font-size:0.55em;">
+  ● Start
+  │
+  ▼
+┌──────────────┐
+│ Buka Login   │
+└──────┬───────┘
+       ▼
+┌──────────────┐
+│ Input NIM &  │
+│ Password     │
+└──────┬───────┘
+       ▼
+ ◇ Akun terkunci?
+ │Ya → [Pesan error] → ●
+ │Tidak
+ ▼
+ ◇ Password valid?
+ │Tidak → [Increment gagal]
+ │        ◇ >= 5x? → Lock 15m
+ │Ya
+ ▼
+ ◇ First login?
+ │Ya → [Ganti password]
+ │Tidak
+ ▼
+┌──────────────┐
+│  Dashboard   │
+└──────┬───────┘
+       ▼
+      ● End</div>
+            <div>
+                <div class="card">
+                    <h4><i class="fas fa-key"></i> Fitur Login</h4>
+                    <p>Login dengan NIM + password default DDMMYYYY</p>
+                </div>
+                <div class="card card-danger">
+                    <h4><i class="fas fa-lock"></i> Account Lockout</h4>
+                    <p>5x gagal login → akun terkunci 15 menit</p>
+                </div>
+                <div class="card card-success">
+                    <h4><i class="fas fa-redo"></i> Force Password Change</h4>
+                    <p>Login pertama wajib ganti password (bisa skip)</p>
+                </div>
+                <div class="card card-warning">
+                    <h4><i class="fas fa-history"></i> Login History</h4>
+                    <p>Setiap percobaan tercatat (waktu, IP, status)</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section>
+        <h2><i class="fas fa-tasks"></i> Activity Diagram: Pergantian Kepengurusan</h2>
+        <div class="workflow-step"><div class="step-num">1</div><div>Ketum buka menu Pergantian → Input data periode baru</div></div>
+        <div class="workflow-step"><div class="step-num">2</div><div>Pilih susunan pengurus baru (12 jabatan inti)</div></div>
+        <div class="workflow-step"><div class="step-num">3</div><div>Sistem validasi eligibility setiap calon secara otomatis</div></div>
+        <div class="workflow-step"><div class="step-num">4</div><div>Jika tidak memenuhi syarat → Override oleh Ketum (alasan min. 50 karakter)</div></div>
+        <div class="workflow-step"><div class="step-num">5</div><div>Konfirmasi → Sistem proses: arsip lama, buat baru, update jabatan & hak akses</div></div>
+        <div class="workflow-step"><div class="step-num">6</div><div>Catat riwayat kepengurusan + log override untuk audit</div></div>
+        <div class="card" style="margin-top:15px;">
+            <h4>Syarat Jabatan</h4>
+            <p>Staf/Kadiv: 1 tahun | Kanit: 2 tahun + pernah staf | Ketum: 2 tahun</p>
+        </div>
+    </section>
+
+    <section>
+        <h2><i class="fas fa-tasks"></i> Activity Diagram: Alur Redaksi Naskah</h2>
+        <div class="grid-2">
+            <div>
+                <div class="workflow-step"><div class="step-num">1</div><div><strong>Staf</strong> membuat naskah draft</div></div>
+                <div class="workflow-step"><div class="step-num">2</div><div>Submit untuk review ke <strong>Kanit Redaksi</strong></div></div>
+                <div class="workflow-step"><div class="step-num">3</div><div>Kanit review: <span style="color:green">Disetujui</span> atau <span style="color:orange">Revisi</span></div></div>
+                <div class="workflow-step"><div class="step-num">4</div><div>Jika revisi → Staf memperbaiki → Submit ulang</div></div>
+                <div class="workflow-step"><div class="step-num">5</div><div>Jika disetujui → <span style="color:green">Dipublikasikan</span></div></div>
+            </div>
+            <div>
+                <div class="card"><h4>Status Naskah</h4>
+                    <p>
+                        <span class="tech-badge" style="background:#eee">Draft</span>
+                        <span class="tech-badge" style="background:#d4edda">Review</span>
+                        <span class="tech-badge" style="background:#fff3cd">Revisi</span>
+                        <span class="tech-badge" style="background:#d1ecf1">Disetujui</span>
+                        <span class="tech-badge" style="background:#cce5ff">Published</span>
+                        <span class="tech-badge" style="background:#f8d7da">Ditolak</span>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ERD -->
+    <section>
+        <h2><i class="fas fa-database"></i> ERD — Entity Relationship Diagram</h2>
+        <div class="grid-4" style="font-size:0.75em;">
+            <div class="stat-box"><span class="number">17</span><span class="label">Tabel Utama</span></div>
+            <div class="stat-box green"><span class="number">25+</span><span class="label">Relasi</span></div>
+            <div class="stat-box orange"><span class="number">17</span><span class="label">Role</span></div>
+            <div class="stat-box red"><span class="number">80+</span><span class="label">Permission</span></div>
+        </div>
+        <div class="img-placeholder" style="margin-top:15px;">
+            <i class="fas fa-project-diagram"></i>
+            <strong>Gambar ERD</strong><br>
+            <span class="small">Export dari MySQL Workbench / draw.io / dbdiagram.io<br>Sisipkan gambar ERD di sini</span>
+        </div>
+    </section>
+
+    <section>
+        <h2><i class="fas fa-database"></i> Detail Relasi ERD</h2>
+        <table style="font-size:0.65em;">
+            <tr><th>Tabel Asal</th><th>Relasi</th><th>Tabel Tujuan</th><th>Kardinalitas</th></tr>
+            <tr><td>anggota</td><td>hasMany</td><td>login_history, riwayat_kepengurusan, notulensi, jadwal_shift</td><td>1:N</td></tr>
+            <tr><td>anggota</td><td>hasMany</td><td>naskah_redaksi (penulis/editor), event (PIC)</td><td>1:N</td></tr>
+            <tr><td>anggota</td><td>hasMany</td><td>anggota_panitia, surat_pernyataan, laporan_pasca_event</td><td>1:N</td></tr>
+            <tr><td>periode_kepengurusan</td><td>hasMany</td><td>riwayat, rekrutmen, event, anggaran_divisi</td><td>1:N</td></tr>
+            <tr><td>event</td><td>hasMany</td><td>divisi_panitia, anggota_panitia, anggaran_event</td><td>1:N</td></tr>
+            <tr><td>event</td><td>hasOne</td><td>laporan_pasca_event</td><td>1:1</td></tr>
+            <tr><td>divisi_panitia</td><td>hasMany</td><td>anggota_panitia</td><td>1:N</td></tr>
+            <tr><td>anggota_panitia</td><td>hasOne</td><td>surat_pernyataan</td><td>1:1</td></tr>
+        </table>
+    </section>
+
+    <!-- MOCKUP -->
+    <section>
+        <h2><i class="fas fa-desktop"></i> Mockup / Wireframe Antarmuka</h2>
+        <div class="grid-2">
+            <div class="img-placeholder">
+                <i class="fas fa-sign-in-alt"></i>
+                <strong>Halaman Login</strong><br>
+                <span class="small">Screenshot mockup login</span>
+            </div>
+            <div class="img-placeholder">
+                <i class="fas fa-tachometer-alt"></i>
+                <strong>Dashboard Ketua Umum</strong><br>
+                <span class="small">Screenshot mockup dashboard</span>
+            </div>
+            <div class="img-placeholder">
+                <i class="fas fa-users"></i>
+                <strong>Manajemen Anggota</strong><br>
+                <span class="small">Screenshot tabel anggota</span>
+            </div>
+            <div class="img-placeholder">
+                <i class="fas fa-calendar-alt"></i>
+                <strong>Manajemen Event</strong><br>
+                <span class="small">Screenshot halaman event</span>
+            </div>
+        </div>
+        <p class="small text-muted">* Buat mockup di Figma/Balsamiq atau ambil screenshot aplikasi</p>
+    </section>
+</section>
+
+<!-- ==================== SECTION 4: IMPLEMENTASI ==================== -->
+<section>
+    <section class="section-divider">
+        <div class="section-number">4</div>
+        <h2>Implementasi</h2>
+        <p>Teknologi, Arsitektur, dan Modul Sistem</p>
+    </section>
+
+    <section>
+        <h2><i class="fas fa-layer-group"></i> Arsitektur MVC</h2>
+        <div style="max-width:600px; margin:0 auto;">
+            <div class="arch-layer arch-frontend">
+                <i class="fas fa-palette"></i> <strong>VIEW</strong> — Blade Template + Bootstrap 5 + Alpine.js + Chart.js<br>
+                <small>Tampilan yang dilihat & diinteraksikan user</small>
+            </div>
+            <div class="arch-arrow">⬇️ HTTP Request ⬆️ Response</div>
+            <div class="arch-layer" style="background:#e67e22; color:#fff;">
+                <i class="fas fa-cogs"></i> <strong>CONTROLLER</strong> — Laravel 11 + FormRequest + Authorization<br>
+                <small>Validasi, authorization, business logic</small>
+            </div>
+            <div class="arch-arrow">⬇️ Eloquent ORM ⬆️ Data</div>
+            <div class="arch-layer arch-database">
+                <i class="fas fa-database"></i> <strong>MODEL</strong> — Eloquent + Spatie Permission + Activity Log<br>
+                <small>Data access, relationships, scopes</small>
+            </div>
+            <div class="arch-arrow">⬇️ SQL Query ⬆️ Results</div>
+            <div class="arch-layer" style="background:#8e44ad; color:#fff;">
+                <i class="fas fa-server"></i> <strong>DATABASE</strong> — MySQL / SQLite (31 Tabel, 17 Role, 80+ Permission)
+            </div>
+        </div>
+    </section>
+
+    <section>
+        <h2><i class="fas fa-tools"></i> Teknologi yang Digunakan</h2>
+        <div class="grid-2">
+            <div class="text-left">
+                <h3>Backend</h3>
+                <span class="tech-badge"><i class="fab fa-laravel"></i> Laravel 11</span>
+                <span class="tech-badge"><i class="fab fa-php"></i> PHP 8.x</span>
+                <span class="tech-badge">Spatie Permission</span>
+                <span class="tech-badge">Spatie Activitylog</span>
+                <span class="tech-badge">DomPDF</span>
+                <span class="tech-badge">Maatwebsite Excel</span>
+                <span class="tech-badge">Laravel Breeze</span>
+                <span class="tech-badge"><i class="fas fa-database"></i> MySQL</span>
+            </div>
+            <div class="text-left">
+                <h3>Frontend</h3>
+                <span class="tech-badge"><i class="fab fa-bootstrap"></i> Bootstrap 5.3</span>
+                <span class="tech-badge">Alpine.js 3.15</span>
+                <span class="tech-badge"><i class="fas fa-chart-pie"></i> Chart.js 4.5</span>
+                <span class="tech-badge"><i class="fab fa-sass"></i> Sass 1.99</span>
+                <span class="tech-badge">Axios 1.7</span>
+                <span class="tech-badge"><i class="fas fa-bolt"></i> Vite 6.0</span>
+                <span class="tech-badge">Blade Template</span>
+            </div>
+        </div>
+        <div class="card card-success" style="margin-top:15px;">
+            <h4><i class="fas fa-money-bill-wave"></i> 100% Open Source — Zero Cost</h4>
+            <p>Seluruh teknologi menggunakan open source tanpa biaya lisensi (Rp 0)</p>
+        </div>
+    </section>
+
+    <section>
+        <h2><i class="fas fa-puzzle-piece"></i> Modul Aplikasi (18 Modul)</h2>
+        <div class="grid-3" style="font-size:0.8em;">
+            <div class="card"><h4>🔐 Autentikasi</h4><p>Login, logout, reset password</p></div>
+            <div class="card"><h4>📊 Dashboard</h4><p>8 jenis dashboard per role</p></div>
+            <div class="card"><h4>👥 Anggota</h4><p>CRUD, import, foto profil</p></div>
+            <div class="card card-success"><h4>📝 Notulensi</h4><p>CRUD rapat, 6 kategori</p></div>
+            <div class="card card-success"><h4>📅 Rekrutmen</h4><p>Tracking seleksi multi-tahap</p></div>
+            <div class="card card-success"><h4>📆 Jadwal Piket</h4><p>Generate acak per hari</p></div>
+            <div class="card card-warning"><h4>🎯 Event</h4><p>CRUD + kepanitiaan</p></div>
+            <div class="card card-warning"><h4>📰 Naskah Redaksi</h4><p>Workflow draft → publish</p></div>
+            <div class="card card-warning"><h4>💰 Anggaran</h4><p>Divisi & event + realisasi</p></div>
+            <div class="card card-danger"><h4>📋 Surat Pernyataan</h4><p>PDF + TTD + approval</p></div>
+            <div class="card card-danger"><h4>📊 Laporan</h4><p>Export PDF & Excel</p></div>
+            <div class="card card-danger"><h4>🔄 Pergantian</h4><p>Eligibility + override</p></div>
+        </div>
+    </section>
+
+    <section>
+        <h2><i class="fas fa-shield-alt"></i> Fitur Keamanan</h2>
+        <div class="grid-2">
+            <div class="text-left">
+                <ul class="feature-list">
+                    <li>Password Encryption (Bcrypt)</li>
+                    <li>Account Lockout (5x gagal → 15 menit)</li>
+                    <li>Session Management + Timeout</li>
+                    <li>CSRF Protection</li>
+                    <li>SQL Injection Prevention (Eloquent)</li>
+                </ul>
+            </div>
+            <div class="text-left">
+                <ul class="feature-list">
+                    <li>103+ Authorization Checks</li>
+                    <li>17 Role + 80+ Permission</li>
+                    <li>Audit Trail (Activity Log)</li>
+                    <li>XSS Prevention (Blade escaping)</li>
+                    <li>Login History Tracking</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+</section>
+
+<!-- ==================== SECTION 5: DEMO ==================== -->
+<section>
+    <section class="section-divider">
+        <div class="section-number">5</div>
+        <h2>Demonstrasi Aplikasi</h2>
+        <p>Skenario Demo Sistem</p>
+    </section>
+
+    <section>
+        <h2><i class="fas fa-play-circle"></i> Skenario Demonstrasi</h2>
+        <div class="grid-2">
+            <div class="card">
+                <h4>1. Autentikasi & Dashboard</h4>
+                <p>Login berbagai role, lihat dashboard berbeda, account lockout</p>
+            </div>
+            <div class="card card-success">
+                <h4>2. Manajemen Anggota</h4>
+                <p>Tambah, edit, import Excel, reset password, foto profil</p>
+            </div>
+            <div class="card card-warning">
+                <h4>3. Event & Kepanitiaan</h4>
+                <p>Buat event, bentuk panitia, assign anggota, anggaran</p>
+            </div>
+            <div class="card card-danger">
+                <h4>4. Pergantian Kepengurusan</h4>
+                <p>Validasi eligibility, override, transisi otomatis</p>
+            </div>
+        </div>
+        <div class="highlight" style="margin-top:15px; font-size:0.85em;">
+            <i class="fas fa-info-circle"></i> <strong>Demo dilakukan secara live di depan penguji/audiens</strong><br>
+            Setiap langkah didokumentasikan dengan screenshot
+        </div>
+    </section>
+
+    <section>
+        <h2><i class="fas fa-camera"></i> Screenshot Demo</h2>
+        <div class="grid-3">
+            <div class="img-placeholder" style="padding:25px;">
+                <i class="fas fa-sign-in-alt"></i>
+                <strong>Login Page</strong>
+            </div>
+            <div class="img-placeholder" style="padding:25px;">
+                <i class="fas fa-tachometer-alt"></i>
+                <strong>Dashboard</strong>
+            </div>
+            <div class="img-placeholder" style="padding:25px;">
+                <i class="fas fa-users"></i>
+                <strong>Anggota</strong>
+            </div>
+            <div class="img-placeholder" style="padding:25px;">
+                <i class="fas fa-calendar"></i>
+                <strong>Event</strong>
+            </div>
+            <div class="img-placeholder" style="padding:25px;">
+                <i class="fas fa-file-alt"></i>
+                <strong>Laporan</strong>
+            </div>
+            <div class="img-placeholder" style="padding:25px;">
+                <i class="fas fa-exchange-alt"></i>
+                <strong>Pergantian</strong>
+            </div>
+        </div>
+    </section>
+</section>
+
+<!-- ==================== SECTION 6: PENGUJIAN ==================== -->
+<section>
+    <section class="section-divider">
+        <div class="section-number">6</div>
+        <h2>Pengujian Sistem</h2>
+        <p>Metode, Test Suite, dan Hasil Pengujian</p>
+    </section>
+
+    <section>
+        <h2><i class="fas fa-vial"></i> Metode Pengujian</h2>
+        <div class="grid-3">
+            <div class="stat-box"><span class="number">Unit</span><span class="label">Testing individual methods</span></div>
+            <div class="stat-box green"><span class="number">Feature</span><span class="label">End-to-end flow testing</span></div>
+            <div class="stat-box orange"><span class="number">Auth</span><span class="label">Permission matrix testing</span></div>
+        </div>
+        <div class="card" style="margin-top:15px;">
+            <h4>Tool: PHPUnit + Laravel Testing</h4>
+            <p>Automated testing dengan database in-memory SQLite untuk isolasi dan kecepatan</p>
+        </div>
+    </section>
+
+    <section>
+        <h2><i class="fas fa-list-check"></i> Test Suite Overview</h2>
+        <table style="font-size:0.7em;">
+            <tr><th>File Test</th><th>Kategori</th><th>Deskripsi</th></tr>
+            <tr><td>AuthorizationMatrixTest</td><td>Authorization</td><td>46+ test permission per role</td></tr>
+            <tr><td>AnggotaCrudTest</td><td>CRUD</td><td>Create, Read, Update, Delete anggota</td></tr>
+            <tr><td>EventCrudTest</td><td>CRUD</td><td>Event & kepanitiaan management</td></tr>
+            <tr><td>InputValidationTest</td><td>Validation</td><td>10+ test validasi input form</td></tr>
+            <tr><td>PasswordResetTest</td><td>Security</td><td>Reset individual & bulk</td></tr>
+            <tr><td>PeriodePergantianTest</td><td>Feature</td><td>Eligibility & override</td></tr>
+            <tr><td>NaskahRedaksiTest</td><td>Workflow</td><td>Draft → Review → Publish</td></tr>
+            <tr><td>JadwalPiketTest</td><td>Feature</td><td>Generate jadwal acak</td></tr>
+            <tr><td>KeaktifanTest</td><td>Feature</td><td>Toggle status & perpanjangan</td></tr>
+            <tr><td>LaporanTest</td><td>Export</td><td>PDF & Excel generation</td></tr>
+        </table>
+    </section>
+
+    <section>
+        <h2><i class="fas fa-clipboard-check"></i> Contoh Test Case</h2>
+        <table style="font-size:0.65em;">
+            <tr><th>ID</th><th>Skenario</th><th>Input</th><th>Expected</th><th>Status</th></tr>
+            <tr><td>TC-001</td><td>Login berhasil</td><td>NIM + password benar</td><td>Masuk dashboard</td><td class="status-pass">✅ Pass</td></tr>
+            <tr><td>TC-002</td><td>Login gagal</td><td>Password salah</td><td>Error + increment</td><td class="status-pass">✅ Pass</td></tr>
+            <tr><td>TC-003</td><td>Account lockout</td><td>5x gagal login</td><td>Terkunci 15 menit</td><td class="status-pass">✅ Pass</td></tr>
+            <tr><td>TC-004</td><td>Tambah anggota</td><td>Data lengkap valid</td><td>Berhasil ditambah</td><td class="status-pass">✅ Pass</td></tr>
+            <tr><td>TC-005</td><td>NIM duplikat</td><td>NIM sudah ada</td><td>Error validasi</td><td class="status-pass">✅ Pass</td></tr>
+            <tr><td>TC-006</td><td>Staf akses /anggota</td><td>Role staf</td><td>403 Forbidden</td><td class="status-pass">✅ Pass</td></tr>
+            <tr><td>TC-007</td><td>Calon tidak eligible</td><td>Anggota &lt; 1 tahun</td><td>Warning eligibility</td><td class="status-pass">✅ Pass</td></tr>
+            <tr><td>TC-008</td><td>Override tanpa alasan</td><td>Alasan &lt; 50 char</td><td>Error validasi</td><td class="status-pass">✅ Pass</td></tr>
+        </table>
+    </section>
+
+    <section>
+        <h2><i class="fas fa-terminal"></i> Menjalankan Test Suite</h2>
+        <div class="diagram-box" style="font-size:0.65em;">
+$ php artisan test
+
+  PASS  Tests\Feature\Auth\LoginTest
+  ✓ user can login with valid credentials
+  ✓ user cannot login with wrong password
+  ✓ account gets locked after 5 failed attempts
+
+  PASS  Tests\Feature\AuthorizationMatrixTest
+  ✓ admin can access all pages (46 assertions)
+  ✓ staf cannot access anggota management
+  ✓ bendahara can access anggaran pages
+  ✓ anggota cannot access laporan page
+
+  PASS  Tests\Feature\AnggotaCrudTest
+  ✓ can create new anggota
+  ✓ cannot create duplicate nim
+  ✓ can import from excel
+
+  Tests:  100+ passed (0 failed)
+  Time:   ~15 seconds</div>
+    </section>
+</section>
+
+<!-- ==================== SECTION 7: HASIL & EVALUASI ==================== -->
+<section>
+    <section class="section-divider">
+        <div class="section-number">7</div>
+        <h2>Hasil dan Evaluasi</h2>
+        <p>Pencapaian, Kelebihan, dan Kekurangan Sistem</p>
+    </section>
+
+    <section>
+        <h2><i class="fas fa-check-double"></i> Fitur yang Selesai Dikembangkan</h2>
+        <div class="grid-4" style="font-size:0.85em;">
+            <div class="stat-box"><span class="number" style="font-size:1.5em;">16</span><span class="label">Fitur Utama</span></div>
+            <div class="stat-box green"><span class="number" style="font-size:1.5em;">18</span><span class="label">Modul</span></div>
+            <div class="stat-box orange"><span class="number" style="font-size:1.5em;">103+</span><span class="label">Auth Check</span></div>
+            <div class="stat-box red"><span class="number" style="font-size:1.5em;">100+</span><span class="label">Test Case</span></div>
+        </div>
+        <ul class="feature-list" style="font-size:0.75em; margin-top:15px;">
+            <li>Autentikasi & Keamanan</li>
+            <li>Dashboard Role-Based (8 jenis)</li>
+            <li>Manajemen Anggota (CRUD + Import)</li>
+            <li>Pergantian Kepengurusan + Override</li>
+            <li>Event & Kepanitiaan</li>
+            <li>Alur Redaksi Naskah</li>
+            <li>Anggaran Divisi & Event</li>
+            <li>Surat Pernyataan + Approval</li>
+            <li>Laporan & Export (PDF/Excel)</li>
+            <li>Audit Trail (Activity Log)</li>
+        </ul>
+    </section>
+
+    <section>
+        <h2><i class="fas fa-thumbs-up"></i> Kelebihan Sistem</h2>
+        <div class="grid-2">
+            <div class="solution-item"><i class="fas fa-check"></i> <strong>RBAC Komprehensif</strong> — 17 role, 80+ permission</div>
+            <div class="solution-item"><i class="fas fa-check"></i> <strong>Audit Trail Lengkap</strong> — Setiap perubahan tercatat</div>
+            <div class="solution-item"><i class="fas fa-check"></i> <strong>Validasi Otomatis</strong> — Eligibility dicek sistem</div>
+            <div class="solution-item"><i class="fas fa-check"></i> <strong>Dashboard Personal</strong> — 8 jenis berbeda per jabatan</div>
+            <div class="solution-item"><i class="fas fa-check"></i> <strong>100% Open Source</strong> — Zero cost (Rp 0)</div>
+            <div class="solution-item"><i class="fas fa-check"></i> <strong>Responsive Design</strong> — Semua perangkat</div>
+            <div class="solution-item"><i class="fas fa-check"></i> <strong>Automated Testing</strong> — 100+ test case</div>
+            <div class="solution-item"><i class="fas fa-check"></i> <strong>Export Multi-Format</strong> — PDF & Excel</div>
+        </div>
+    </section>
+
+    <section>
+        <h2><i class="fas fa-exclamation-circle"></i> Kekurangan & Rencana Perbaikan</h2>
+        <table>
+            <tr><th>No</th><th>Kekurangan</th><th>Rencana Perbaikan</th></tr>
+            <tr><td>1</td><td>Belum ada notifikasi real-time</td><td>WebSocket / Laravel Echo</td></tr>
+            <tr><td>2</td><td>Belum ada mobile app</td><td>Progressive Web App (PWA)</td></tr>
+            <tr><td>3</td><td>Belum ada backup otomatis</td><td>Laravel Task Scheduling</td></tr>
+            <tr><td>4</td><td>Belum ada multi-bahasa</td><td>Laravel Localization</td></tr>
+            <tr><td>5</td><td>Hosting masih on-premise</td><td>Migrasi ke cloud/VPS</td></tr>
+            <tr><td>6</td><td>Belum ada API pihak ketiga</td><td>REST API jika diperlukan</td></tr>
+        </table>
+    </section>
+</section>
+
+<!-- ==================== SECTION 8: KESIMPULAN ==================== -->
+<section>
+    <section class="section-divider">
+        <div class="section-number">8</div>
+        <h2>Kesimpulan</h2>
+        <p>Pencapaian Tujuan, Manfaat, dan Hasil Pengujian</p>
+    </section>
+
+    <section>
+        <h2><i class="fas fa-flag-checkered"></i> Pencapaian Tujuan</h2>
+        <div class="grid-2" style="font-size:0.85em;">
+            <div class="solution-item">✅ Digitalisasi administrasi — <strong>Tercapai</strong></div>
+            <div class="solution-item">✅ Sumber data terpercaya — <strong>Tercapai</strong></div>
+            <div class="solution-item">✅ Validasi kepengurusan — <strong>Tercapai</strong></div>
+            <div class="solution-item">✅ Dokumentasi kegiatan — <strong>Tercapai</strong></div>
+            <div class="solution-item">✅ Transparansi keuangan — <strong>Tercapai</strong></div>
+            <div class="solution-item">✅ Alur redaksi terkelola — <strong>Tercapai</strong></div>
+            <div class="solution-item">✅ Akses berbasis peran — <strong>Tercapai</strong></div>
+            <div class="solution-item">✅ Responsive & accessible — <strong>Tercapai</strong></div>
+        </div>
+    </section>
+
+    <section>
+        <h2><i class="fas fa-chart-bar"></i> Hasil Pengujian</h2>
+        <div class="grid-4">
+            <div class="stat-box"><span class="number">100+</span><span class="label">Total Test</span></div>
+            <div class="stat-box green"><span class="number">100%</span><span class="label">Pass Rate</span></div>
+            <div class="stat-box orange"><span class="number">0</span><span class="label">Failure</span></div>
+            <div class="stat-box red"><span class="number">46</span><span class="label">Auth Tests</span></div>
+        </div>
+        <div class="card card-success" style="margin-top:20px;">
+            <h4>Seluruh pengujian berhasil dilalui tanpa kegagalan</h4>
+            <p>Mencakup: Authorization, CRUD, Validation, Authentication, Workflow, dan Export</p>
+        </div>
+    </section>
+
+    <section>
+        <h2><i class="fas fa-star"></i> Manfaat Sistem</h2>
+        <div class="grid-3">
+            <div class="card">
+                <h4>Administrasi</h4>
+                <p>Penghematan waktu ~70% dibanding manual</p>
+            </div>
+            <div class="card card-success">
+                <h4>Transparansi</h4>
+                <p>Data terlihat sesuai hak akses masing-masing</p>
+            </div>
+            <div class="card card-warning">
+                <h4>Akuntabilitas</h4>
+                <p>Audit trail untuk setiap perubahan</p>
+            </div>
+            <div class="card">
+                <h4>Keberlanjutan</h4>
+                <p>Data tersimpan permanen per periode</p>
+            </div>
+            <div class="card card-success">
+                <h4>Efisiensi</h4>
+                <p>Automasi validasi, jadwal, laporan</p>
+            </div>
+            <div class="card card-danger">
+                <h4>Keamanan</h4>
+                <p>Encryption, lockout, authorization berlapis</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="title-slide">
+        <h1 style="font-size:1.8em;">Terima Kasih</h1>
+        <p class="subtitle">Sistem Informasi Manajemen UKM Jurnalistik</p>
+        <p class="institution">Politeknik Negeri Samarinda — 2026</p>
+        <div style="margin-top:30px;">
+            <div class="grid-3" style="max-width:500px; margin:0 auto;">
+                <div><i class="fas fa-code" style="font-size:2em; color:var(--secondary);"></i><br><span class="small">Open Source</span></div>
+                <div><i class="fas fa-shield-alt" style="font-size:2em; color:var(--success);"></i><br><span class="small">Secure</span></div>
+                <div><i class="fas fa-money-bill" style="font-size:2em; color:var(--warning);"></i><br><span class="small">Zero Cost</span></div>
+            </div>
+        </div>
+        <p style="margin-top:30px; color:#888; font-size:0.8em;">
+            <i class="fas fa-question-circle"></i> Sesi Tanya Jawab
+        </p>
+    </section>
+</section>
+
+</div><!-- /slides -->
+</div><!-- /reveal -->
+
+<script src="https://cdn.jsdelivr.net/npm/reveal.js@5.1.0/dist/reveal.js"></script>
+<script>
+Reveal.initialize({
+    hash: true,
+    slideNumber: 'c/t',
+    width: 1200,
+    height: 700,
+    margin: 0.04,
+    transition: 'slide',
+    transitionSpeed: 'default',
+    backgroundTransition: 'fade',
+    center: true,
+    controls: true,
+    progress: true,
+    history: true,
+    keyboard: true,
+    overview: true,
+    touch: true,
+    plugins: []
+});
+</script>
+</body>
+</html>

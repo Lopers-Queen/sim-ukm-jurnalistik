@@ -1,0 +1,151 @@
+// ============================================
+// SIM UKM Jurnalistik - Design System Variables
+// Light-first theme with Royal Blue accent
+// Override Bootstrap 5 defaults before import
+// ============================================
+
+// ── Primary Accent ──
+$clario-primary:     #3b82f6;   // Royal Blue
+$clario-primary-h:   #2563eb;   // Darker hover
+$clario-primary-l:   #60a5fa;   // Lighter variant
+
+// ── Light Mode Tokens (DEFAULT) ──
+$clario-bg:          #f8fafc;   // Page background
+$clario-surface-1:   #ffffff;   // Cards, panels
+$clario-surface-2:   #f1f5f9;   // Sidebar, elevated areas
+$clario-surface-3:   #e2e8f0;   // Borders, dividers
+$clario-heading:     #0f172a;   // Heading text
+$clario-body:        #475569;   // Body text
+$clario-white:       #ffffff;
+$clario-muted:       #94a3b8;   // Muted / placeholder text
+
+// ── Dark Mode Tokens (applied via [data-theme="dark"]) ──
+$dark-bg:            #0a0a0f;
+$dark-surface-1:     #12121a;
+$dark-surface-2:     #1a1a25;
+$dark-surface-3:     #2a2a3a;
+$dark-heading:       #f1f5f9;
+$dark-body:          #94a3b8;
+$dark-muted:         rgba(255, 255, 255, 0.45);
+
+// ── Brand Colors (Bootstrap overrides) ──
+$primary:       $clario-primary;
+$secondary:     #64748b;
+$success:       #10b981;
+$info:          #06b6d4;
+$warning:       #f59e0b;
+$danger:        #ef4444;
+$light:         $clario-surface-2;
+$dark:          #0f172a;
+
+// Brand accent
+$brand-accent:  $clario-primary;
+
+// ── Gray Scale (Light theme adapted) ──
+$gray-50:       #f8fafc;
+$gray-100:      #f1f5f9;
+$gray-200:      #e2e8f0;
+$gray-300:      #cbd5e1;
+$gray-400:      #94a3b8;
+$gray-500:      #64748b;
+$gray-600:      #475569;
+$gray-700:      #334155;
+$gray-800:      #1e293b;
+$gray-900:      #0f172a;
+
+// ── Semantic Tokens ──
+$text-primary:   $clario-heading;
+$text-secondary: $clario-body;
+$text-muted:     $clario-muted;
+$border-color:   $clario-surface-3;
+
+// ── Typography ──
+$font-family-sans-serif: 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+$font-size-base:   0.9rem;
+$headings-font-weight: 600;
+$headings-font-family: 'Manrope', 'Inter', sans-serif;
+
+// ── Border Radius ──
+$border-radius:    0.5rem;
+$border-radius-sm: 0.375rem;
+$border-radius-lg: 0.75rem;
+$border-radius-xl: 1rem;
+
+// ── Shadows (Light theme — elegant) ──
+$box-shadow-sm:  0 1px 2px rgba(0, 0, 0, 0.05);
+$box-shadow:     0 1px 3px rgba(0, 0, 0, 0.08), 0 1px 2px rgba(0, 0, 0, 0.04);
+$box-shadow-lg:  0 4px 12px rgba(0, 0, 0, 0.1);
+
+// ── Card ──
+$card-border-radius: $border-radius-lg;
+$card-border-color:  $clario-surface-3;
+$card-bg:            $clario-surface-1;
+$card-color:         $clario-heading;
+$card-cap-bg:        $clario-surface-1;
+
+// ── Body ──
+$body-bg:    $clario-bg;
+$body-color: $clario-body;
+
+// ── Component colors (Bootstrap) ──
+$input-bg:                    $clario-white;
+$input-color:                 $clario-heading;
+$input-border-color:          $clario-surface-3;
+$input-focus-border-color:    $clario-primary;
+$input-focus-box-shadow:      0 0 0 0.2rem rgba($clario-primary, 0.15);
+$input-placeholder-color:     $clario-muted;
+
+$table-color:                 $clario-body;
+$table-bg:                    transparent;
+$table-border-color:          $clario-surface-3;
+$table-striped-bg:            rgba(0, 0, 0, 0.02);
+$table-hover-bg:              rgba($clario-primary, 0.04);
+
+$modal-content-bg:            $clario-white;
+$modal-content-border-color:  $clario-surface-3;
+$modal-content-color:         $clario-heading;
+$modal-backdrop-bg:           #000;
+$modal-backdrop-opacity:      0.5;
+
+$dropdown-bg:                 $clario-white;
+$dropdown-border-color:       $clario-surface-3;
+$dropdown-color:              $clario-body;
+$dropdown-link-color:         $clario-heading;
+$dropdown-link-hover-bg:      rgba($clario-primary, 0.06);
+$dropdown-link-hover-color:   $clario-primary;
+$dropdown-divider-bg:         $clario-surface-3;
+
+$nav-link-color:              $clario-body;
+$nav-tabs-border-color:       $clario-surface-3;
+$nav-tabs-link-active-color:  $clario-primary;
+$nav-tabs-link-active-bg:     transparent;
+
+$pagination-bg:               $clario-white;
+$pagination-border-color:     $clario-surface-3;
+$pagination-color:            $clario-body;
+$pagination-hover-bg:         rgba($clario-primary, 0.06);
+$pagination-hover-color:      $clario-primary;
+$pagination-active-bg:        $clario-primary;
+$pagination-active-color:     #fff;
+$pagination-active-border-color: $clario-primary;
+
+$alert-bg-scale:              -90%;
+$alert-border-scale:          -70%;
+$alert-color-scale:           40%;
+
+$list-group-bg:               $clario-white;
+$list-group-border-color:     $clario-surface-3;
+$list-group-color:            $clario-body;
+$list-group-action-hover-bg:  rgba($clario-primary, 0.04);
+
+// Buttons
+$btn-close-color:             $clario-heading;
+
+// ── Sidebar ──
+$sidebar-width:      260px;
+$sidebar-mini-width: 70px;
+
+// ── Transitions ──
+$transition-fast: 150ms ease-in-out;
+$transition-base: 250ms ease-in-out;
+$transition-slow: 350ms ease-in-out;
